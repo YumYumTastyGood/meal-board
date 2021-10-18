@@ -99,7 +99,17 @@
       position: absolute;
       left: 500px;
       font-size: 20px;
-
+    }
+    .btn{
+      width: 50px;
+      height: 40px;
+      background-color : #ffd000;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -123,18 +133,18 @@
 
     <div class="rank">
       <form>
-        <label>밥도둑:
+        <label for="post-thief">밥도둑:
           <input name="submitted-name" autocomplete="name">
         </label>
-        <button>저장</button>
+        <button type="button" class="btn" onclick="">저장</button>
       </form>
       
       <!-- Form which will send a POST request to the current URL -->
       <form method="post">
-        <label >밥경찰:
+        <label for="post-police">밥경찰:
           <input name="submitted-name" autocomplete="name">
         </label>
-        <button>저장</button>
+        <button type="button" class="btn" onclick="">저장</button>
       </form>
       
     </div>
