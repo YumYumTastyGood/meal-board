@@ -1,4 +1,4 @@
-!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -31,12 +31,14 @@
     body {
       background-color: whitesmoke;
     }
-
-    .wrap {
-
-      width: 900px;
+    a 
+    {
+      text-decoration: none;
+      color: black;
+    }
+    .wrap
+    {
       margin: auto;
-
     }
 
     .navbar {
@@ -45,8 +47,7 @@
       align-items: center;
       background-color: #ffd000;
       width: 100%;
-      border-style:solid;
-      border-radius: 10px;
+
     }
 
     .header {
@@ -63,7 +64,7 @@
       list-style: none;
       margin: auto;
       justify-content: space-around;
-      font-size: 1.5em;
+      font-size: 2em;
     }
 
     .nav_menu li {
@@ -84,8 +85,15 @@
       background-color: #ffd000;
       border-color: #ffd000;
     }
-    .input {
-      width: 800px;
+
+    .title
+    {
+      font-size: 40px;
+      padding-left: 30px;
+    }
+    .input 
+    {
+      width: 1000px;
       margin: auto;
       display: flex;
     }
@@ -101,24 +109,46 @@
     }
     .md-form {
       display: flex;
-      width: 180px;
+   
     }
     .input-time
     { display: flex;
       margin-left: 10px;
-      width: 30px;
     }
     .table {
-      width: 800px;
+      
       list-style: none;
       margin: auto;
       margin-top: 20px;
-    }
-
-    a 
+    }   
+ 
+    @media screen and (max-width : 768px) 
     {
-      text-decoration: none;
-      color: black;
+     .navbar
+     {
+       flex-direction: column;
+       align-items: flex-start;
+       padding: 2px 30px;
+       width: 100%;
+     } 
+     .nav_menu
+     {
+       flex-direction: column;
+       align-items: center;
+       width: 100%;
+     } 
+     .nav_menu li {
+       width: 100%;
+       text-align : center;
+     };
+     .table
+     {
+       width: 100%;
+     }
+     .input
+     {
+       flex-direction: column;
+     }
     }
   </style>
   <script>
@@ -141,7 +171,7 @@
       </ul>
     </nav>
     <p>
-    <h2>오늘의 급식!!</h2>
+    <a class="title">오늘의 급식!!</a>
     </p>
     <div class="input">
       <div class="input-group mb-3">
@@ -160,8 +190,8 @@
           <label class="input-group-text" for="inputGroupSelect01">학교</label>
         </div>
         <div class="md-form mt-0">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-          <button type="button" class="btn btn-warning">
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search"id ="serchSchool">
+          <button type="button" class="btn btn-warning" >
             <i class="fas fa-search text-grey" aria-hidden="true"></i></button>
         </div>
         <div class="input-time">
