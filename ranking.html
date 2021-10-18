@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>랭킹페이지</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/f3d5717210.js" crossorigin="anonymous"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      font-family: 'Single Day', cursive;
+    }
+
+    body {
+      background-color: whitesmoke;
+    }
+
+    .wrap {
+
+      width: 800px;
+      height: 1000px;
+      margin: auto;
+
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffd000;
+      width: 800px;
+      height: 60px;
+    }
+
+    .header {
+      display: flex;
+      text-align: center;
+    }
+
+    .fa-arrow-alt-circle-right {
+      position: absolute;
+      right: 320px;
+      font-size: 40px;
+      margin-top: 10px;
+    }
+
+    .fa-arrow-alt-circle-left {
+      position: absolute;
+      right: 370px;
+      font-size: 40px;
+      margin-top: 10px;
+    }
+
+    .header i {
+      font-size: 40px;
+    }
+
+    .nav_menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav_menu li {
+      padding: 10px 60px;
+    }
+
+    .nav_menu :hover {
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    a 
+    {
+      text-decoration: none;
+      color: black;
+    }
+
+    .rank{
+      margin-top: 40px;
+      position: absolute;
+      left: 500px;
+      font-size: 20px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="header">
+      <span style="color:#4caf50"><i class="fas fa-seedling"></i></span>
+      <span style="color:#4caf50"><i class="fas fa-arrow-alt-circle-right"></i></span>
+      <span style="color:#4caf50"><i class="far fa-arrow-alt-circle-left"></i></span>
+      <h1>밥경찰과 밥도둑</h1>
+    </div>
+
+    <nav class="navbar">
+      <ul class="nav_menu">
+        <li><a href="index.html">오늘의 급식</a></li>
+        <li><a href="ranking.html">랭킹 밥경찰</a></li>
+        <li><a href="">랭킹 밥도둑</a></li>
+      </ul>
+    </nav>
+
+    <div class="rank">
+      <form>
+        <label>밥도둑:
+          <input name="submitted-name" autocomplete="name">
+        </label>
+        <button>저장</button>
+      </form>
+      
+      <!-- Form which will send a POST request to the current URL -->
+      <form method="post">
+        <label >밥경찰:
+          <input name="submitted-name" autocomplete="name">
+        </label>
+        <button>저장</button>
+      </form>
+      
+    </div>
+
+
+
+</body>
+
+</html>
