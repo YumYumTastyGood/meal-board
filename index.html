@@ -31,32 +31,41 @@
     body {
       background-color: whitesmoke;
     }
-    a 
-    {
+
+    a {
       text-decoration: none;
       color: black;
     }
-    .wrap
-    {
+
+    .wrap {
       margin: auto;
     }
+
+
 
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffd000;
+      background: linear-gradient(-50deg, #d6cfc2,#e7e40a, #ffd000, #e8f80a);
       width: 100%;
-
+      animation: gradient 15s ease infinite;
+      background-size: 150% 150%;
     }
 
     .header {
       display: flex;
-      text-align: center;
+      width: 400px;
+      margin: auto;
+      
     }
-
+    .header a
+    {
+      font-size: 3em;
+      width: 1000px;
+    }
     .header i {
-      font-size: 40px;
+      font-size: 70px;
     }
 
     .nav_menu {
@@ -68,91 +77,148 @@
     }
 
     .nav_menu li {
-      padding: 5px 70px;
+      padding: 5px 100px;
     }
-    .nav_menu a{
+
+    .nav_menu a {
       text-decoration: none;
     }
 
     .nav_menu :hover {
-      background-color: white;
+      background: linear-gradient(-50deg, #bdf7ed,#cbfcde, #e4f7d5, #e6fabc);
       border-radius: 10px;
     }
 
     .btn-warning {
       margin: auto;
       display: block;
-      background-color: #ffd000;
-      border-color: #ffd000;
+      background: linear-gradient(-50deg, #d6cfc2,#e7e40a, #ffd000, #e8f80a);
+      border-color: white;
     }
 
-    .title
-    {
+    .btn-bottom {
+      margin-left: 10px;
+      background: linear-gradient(-50deg, #d6cfc2,#e7e40a, #ffd000, #e8f80a);
+      border-color: white;
+      display: flex;
+    }
+
+    .title {
       font-size: 40px;
       padding-left: 30px;
     }
-    .input 
-    {
+
+    .input {
       width: 1000px;
       margin: auto;
       display: flex;
     }
-    .input-group-text
-    {
-      background-color: #ffd000;
+
+    .input-group-text {
+      background: linear-gradient(-45deg, #d6cfc2,#e7e40a, #ffd000, #e8f80a);
       border-color: #ffd000;
-      color: white;
+      
     }
-    .custom-select
-    {
+
+    .custom-select {
       margin-right: 20px;
     }
+
     .md-form {
+      
       display: flex;
-   
     }
-    .input-time
-    { display: flex;
+
+    .input-time {
+      display: flex;
       margin-left: 10px;
     }
+
     .table {
-      
+
       list-style: none;
       margin: auto;
       margin-top: 20px;
-    }   
- 
-    @media screen and (max-width : 768px) 
-    {
-     .navbar
-     {
-       flex-direction: column;
-       align-items: flex-start;
-       padding: 2px 30px;
-       width: 100%;
-     } 
-     .nav_menu
-     {
-       flex-direction: column;
-       align-items: center;
-       width: 100%;
-     } 
-     .nav_menu li {
-       width: 100%;
-       text-align : center;
-     };
-     .table
-     {
-       width: 100%;
-     }
-     .input
-     {
-       flex-direction: column;
-     }
+    }
+
+    @media screen and (max-width : 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2px 30px;
+        width: 100%;
+      }
+
+      .nav_menu {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .nav_menu li {
+        width: 100%;
+        text-align: center;
+      }
+
+
+      .table {
+        width: 100%;
+      }
+
+      .input {
+        flex-direction: column;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
     }
   </style>
   <script>
-
+    function makeRegion() {
+      $.ajax({
+        type: "POST",
+        url: "......url",
+        async: false,
+        data: {},
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        }
+      })
+    }
+    function makeMealChart() {
+      $.ajax({
+        type: "POST",
+        url: "......url",
+        data: {},
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        }
+      })
+    }
+    function showMealChart() {
+      $.ajax({
+        type: "GET",
+        url: "....url",
+        data: {},
+        success: function (response) {
+        }
+      }
+      )
+    }
+  </script>
   </script>
 </head>
 
@@ -160,7 +226,7 @@
   <div class="wrap">
     <div class="header">
       <span style="color:#4caf50"><i class="fas fa-seedling"></i></span>
-      <h1>밥경찰과 밥도둑</h1>
+      <a class="title">밥경찰과 밥도둑</a>
     </div>
 
     <nav class="navbar">
@@ -171,14 +237,14 @@
       </ul>
     </nav>
     <p>
-    <a class="title">오늘의 급식!!</a>
+      <a class="title">오늘의 급식!!</a>
     </p>
     <div class="input">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">지역</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
+        <select class="custom-select" id="inputGroupSelect01" onchange="makeRegion()">
           <option selected>Choose...</option>
           <option value="1">One</option>
           <option value="2">Two</option>
@@ -190,13 +256,14 @@
           <label class="input-group-text" for="inputGroupSelect01">학교</label>
         </div>
         <div class="md-form mt-0">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search"id ="serchSchool">
-          <button type="button" class="btn btn-warning" >
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="serchSchool">
+          <button type="button" class="btn btn-warning">
             <i class="fas fa-search text-grey" aria-hidden="true"></i></button>
         </div>
         <div class="input-time">
-            <input type='date' id='currentTime' />
+          <input type='date' id='currentTime' />
         </div>
+        <button type="button" class="btn btn-bottom" onclick="makeMealChart()">찾기</button>
       </div>
     </div>
 
