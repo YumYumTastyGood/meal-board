@@ -12,7 +12,7 @@ class Mongo:
         user = user and user or DATABASES.get("user")
         password = (
             password
-            and qutoe_plus(str(password))
+            and quote_plus(str(password))
             or quote_plus(str(DATABASES.get("password")))
         )
 
