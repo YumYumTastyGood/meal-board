@@ -9,3 +9,6 @@ DATABASES = {
     "password": getenv("MEALS_MONGO_PASSWORD"),
     "collection": getenv("MEALS_MONGO_COLLECTION", "mealboard"),
 }
+
+NEIS_API_KEY = getenv("MEALS_NEIS_API_KEY")
+NEIS_API_URL = getenv("MEALS_NEIS_SERVICE_INFO")
