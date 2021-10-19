@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>랭킹페이지</title>
+  <title>mypage</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -88,50 +88,17 @@
       border-radius: 10px;
     }
 
-    a 
-    {
+    a {
       text-decoration: none;
       color: black;
     }
 
-    .rank{
-      margin-top: 40px;
-      position: absolute;
-      left: 500px;
-      font-size: 20px;
+    .review{
+      margin: 0 auto;
     }
-    .btn{
-      width: 50px;
-      height: 40px;
-      background-color : #ffd000;
-      padding: 5px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .tt{
-      margin-top: 40px;
-    }
-    .table{
-      width: 600px;
-      position: absolute;
-      right: -180px;
-      
-    }
+    
+    
   </style>
-  <script>
-    function makethief()  {
-  const name = document.getElementById('post-thief').value;
-  document.getElementById("result1").innerText = name;
-}
-function makepolice()  {
-  const name = document.getElementById('post-police').value;
-  document.getElementById("result2").innerText = name;
-}
-  </script>
-
 </head>
 
 <body>
@@ -151,40 +118,26 @@ function makepolice()  {
       </ul>
     </nav>
 
-    <div class="rank">
-      <form>
-        <label for="post-thief">밥도둑:
-          <input name="submitted-name" type="text" id="post-thief" autocomplete="name">
-        </label>
-        <button type="submit" class="btn" onclick="makethief()">저장</button>
-      </form>
-      
-      <!-- Form which will send a POST request to the current URL -->
-      <form method="post">
-        <label for="post-police">밥경찰:
-          <input name="submitted-name" type="text" id="post-police" autocomplete="name">
-        </label>
-        <button type="submit" class="btn" onclick="makepolice()">저장</button>
-      </form>
+    <div class="container" style="max-width: 600px;">
+      <div class="info">
+        <h1>천하제일 급식대회</h1>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">제목</span>
+          </div>
+          <input type="text" class="form-control" id="title">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">글 작성</span>
+          </div>
+          <textarea class="form-control" id="bookReview" cols="50" rows="10" placeholder="500자까지 입력할 수 있습니다."></textarea>
+        </div>
+        <div class="review">
+          <button onclick="makeReview()" type="button" class="btn btn-primary" style="background-color: #ffd000;">저장하기</button>
+        </div>
+      </div>
 
-    <div class="tt">
-      <table class="table" border="1">
-        <tread>
-          <th>밥도둑</th>
-          <th>밥경찰</th>
-        </tread>
-        <tbody id="reviews">
-          <tr>
-            <td id="result1"></td>
-            <td id="result2"></td>
-          </tr>
-        </tbody>
-      </table>
-
-
-    </div>
-      
-    </div>
 
 
 
