@@ -55,6 +55,55 @@ Query Params
 }
 ```
 
+### 식사 정보 조회
+
+GET `/meal`
+
+Query Params
+
+```json
+{
+    "begin": "20190101", // <String>
+    "end": "20190102", // <String>
+    "region_code": "B10", // <String>
+    "school_code": "7010057" // <String>
+}
+
+```
+
+요청 예시
+
+> ?when=today&begin=20210901&end=20210903&region_code=B10&school_code=7010057
+
+응답 예시
+
+```json
+{
+    "result": {
+        "20210901": {
+            "MMEAL_SC_CODE": "2",
+            "MMEAL_SC_NM": "중식",
+            "DDISH_NM": [
+                "칼슘찹쌀밥",
+                ...
+                "토마토카프리제"
+            ]
+        },
+        "20210902": {
+            "MMEAL_SC_CODE": "2",
+            "MMEAL_SC_NM": "중식",
+            "DDISH_NM": [
+                "칼슘곡혼합잡곡밥",
+                ...
+                "옥수수콘샐러드"
+            ]
+        },
+        ...
+    }
+}
+```
+
+
 ## 환경구성 및 서비스 실행
 
 ```bash
