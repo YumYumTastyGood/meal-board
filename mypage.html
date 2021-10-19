@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 
   <style>
-    * {
+      * {
       font-family: 'Single Day', cursive;
     }
 
@@ -35,20 +35,18 @@
     }
 
     .wrap {
-
-      width: 800px;
+      width: 100%;
       height: 1000px;
       margin: auto;
-
     }
 
-    .navbar {
+    .display-flex-center {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
+    }
+
+    .background-color-yellow {
       background-color: #ffd000;
-      width: 800px;
-      height: 60px;
     }
 
     .header {
@@ -56,41 +54,27 @@
       text-align: center;
     }
 
-    .fa-arrow-alt-circle-right {
-      position: absolute;
-      right: 320px;
-      font-size: 40px;
-      margin-top: 10px;
-    }
-
-    .fa-arrow-alt-circle-left {
-      position: absolute;
-      right: 370px;
-      font-size: 40px;
-      margin-top: 10px;
-    }
-
-    .header i {
-      font-size: 40px;
-    }
-
-    .nav_menu {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav_menu li {
-      padding: 10px 60px;
-    }
-
-    .nav_menu :hover {
-      background-color: white;
-      border-radius: 10px;
-    }
-
     a {
       text-decoration: none;
       color: black;
+    }
+
+    .rank {
+      margin-top: 1rem;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      width: 50px;
+      height: 40px;
+      background-color: #ffd000;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .review{
@@ -104,22 +88,28 @@
 <body>
   <div class="wrap">
     <div class="header">
-      <span style="color:#4caf50"><i class="fas fa-seedling"></i></span>
-      <span style="color:#4caf50"><i class="fas fa-arrow-alt-circle-right"></i></span>
-      <span style="color:#4caf50"><i class="far fa-arrow-alt-circle-left"></i></span>
-      <h1>밥경찰과 밥도둑</h1>
+      <span style="padding-left: 10px; color:#4caf50; font-size:10vw;"><i class="fas fa-seedling"></i></span>
+      <h1 style="font-size:10vw">밥경찰과 밥도둑</h1>
     </div>
 
-    <nav class="navbar">
-      <ul class="nav_menu">
-        <li><a href="index.html">오늘의 급식</a></li>
-        <li><a href="ranking.html">랭킹 밥경찰</a></li>
-        <li><a href="mypage.html">마이페이지</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg background-color-yellow">
+      <div class="collapse navbar-collapse display-flex-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">오늘의 급식 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ranking.html">랭킹 밥경찰</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mypage.html">마이페이지</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <div class="container" style="max-width: 600px;">
-      <div class="info">
+      <div class="info" style="padding-top:1rem">
         <h1>천하제일 급식대회</h1>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -133,8 +123,8 @@
           </div>
           <textarea class="form-control" id="bookReview" cols="50" rows="10" placeholder="500자까지 입력할 수 있습니다."></textarea>
         </div>
-        <div class="review">
-          <button onclick="makeReview()" type="button" class="btn btn-primary" style="background-color: #ffd000;">저장하기</button>
+        <div class="review" style="text-align: center;">
+          <button onclick="makeReview()" type="button" class="btn btn-primary" style="background-color: #ffd000; min-width:6rem">저장하기</button>
         </div>
       </div>
 
