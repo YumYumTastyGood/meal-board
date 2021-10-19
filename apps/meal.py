@@ -17,9 +17,9 @@ class MealInfo(Resource):
 
     def get(self):
         paramdict = request.args.to_dict()
-        when = paramdict.get("when", "")
-        if not when:
-            return {"message": "when is required"}, 400
+        # when = paramdict.get("when", "")
+        # if not when:
+        # return {"message": "when is required"}, 400
         begin = paramdict.get("begin", None)
         if not begin:
             return {"message": "begin is required"}, 400
@@ -35,7 +35,6 @@ class MealInfo(Resource):
         if not school_code:
             return {"message": "school_code is required"}, 400
 
-        print(when, begin, end, region_code, school_code)
         response = requests.get(
             f"{settings.NEIS_API_URL}?Type=json&ATPT_OFCDC_SC_CODE={region_code}&SD_SCHUL_CODE={school_code}&MMEAL_SC_CODE=2&MLSV_FROM_YMD={begin}&MLSV_TO_YMD={end}"
         )
