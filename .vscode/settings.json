@@ -1,3 +1,9 @@
 {
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true
+  },
+  "python.formatting.provider": "black",
 }
