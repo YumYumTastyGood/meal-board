@@ -80,8 +80,8 @@
       border-radius: 10px;
     }
 
-    .btn-warning {
-      margin: auto;
+    .btn-warning 
+    {
       display: block;
       background-color: #ffd000;
       border-color: #ffd000;
@@ -128,7 +128,7 @@
       background-color: #ffd000;
       height: 100%;
     }
-    @media screen and (max-width : 768px) 
+    @media screen and (max-width : 1300px) 
     {
      .navbar
      {
@@ -165,7 +165,6 @@
      .input-time
      { margin-left: 1px;
        padding: 5px;
-       display: block;
        width: 100%;
      }
      .md-form
@@ -187,7 +186,39 @@
     }
   </style>
   <script>
-
+    function locationList() {
+      $.ajax({
+        type: "GET",
+        url: "/school/location",
+        async: false,
+        data: {},
+        success: function (response) {
+          let locations = response['all_locations']
+          console.log (locations)
+        }
+      })
+    }
+    function makeMealChart() {
+      $.ajax({
+        type: "POST",
+        url: "......url",
+        data: {},
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        }
+      })
+    }
+    function showMealChart() {
+      $.ajax({
+        type: "GET",
+        url: "....url",
+        data: {},
+        success: function (response) {
+        }
+      }
+      )
+    }
   </script>
 </head>
 
@@ -213,7 +244,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">지역</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
+        <select class="custom-select" id="List_Region" onchange ="locationList()" >
           <option selected>Choose...</option>
           <option value="1">One</option>
           <option value="2">Two</option>
@@ -233,7 +264,7 @@
             <input class="calander"type='date' id='currentTime' />
         </div>
       </div>
-      <button type="button" class="btn btn-serch" >찾아보기</button>
+      <button type="button" class="btn btn-serch" onclick="makeMealChart()" >찾아보기</button>
     </div>
 
     <div class="table">
