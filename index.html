@@ -69,12 +69,45 @@
     .full-height {
       height: 100%;
     }
+
     li {
       list-style-type: none;
     }
   </style>
   <script>
-
+    function locationList() {
+      $.ajax({
+        type: "GET",
+        url: "/school/location",
+        async: false,
+        data: {},
+        success: function (response) {
+          let locations = response['all_locations']
+          console.log (locations)
+        }
+      })
+    }
+    function makeMealChart() {
+      $.ajax({
+        type: "POST",
+        url: "......url",
+        data: {},
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        }
+      })
+    }
+    function showMealChart() {
+      $.ajax({
+        type: "GET",
+        url: "....url",
+        data: {},
+        success: function (response) {
+        }
+      }
+      )
+    }
   </script>
 </head>
 
@@ -140,9 +173,7 @@
         <div class='col-md-3'>
           <button type="button" class="btn btn-serch" style="width:100%; height:100%;">찾아보기</button>
         </div>
-      </div>
-  
-  
+      </div>  
       <div class="table">
         <table class="table table-bordered">
           <thead>
