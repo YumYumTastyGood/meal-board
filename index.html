@@ -82,13 +82,13 @@
         data: {},
         success: function (response) {
           let locations = response['location']
-          for (let i = 0; i < locations.length; i++) {
-  
+          for(let i =0; i<locations.length; i++)
+          {
           }
         }
       })
     }
-  
+
     function makeMealChart() {
       $.ajax({
         type: "POST",
@@ -100,7 +100,6 @@
         }
       })
     }
-  
     function showMealChart() {
       $.ajax({
         type: "GET",
