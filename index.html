@@ -75,7 +75,6 @@
     }
   </style>
   <script>
-    
     function locationList() {
       $.ajax({
         type: "GET",
@@ -85,11 +84,11 @@
           let locations = response['location']
           for(let i =0; i<locations.length; i++)
           {
-
           }
         }
       })
     }
+
     function makeMealChart() {
       $.ajax({
         type: "POST",
@@ -106,11 +105,54 @@
         type: "GET",
         url: "....url",
         data: {},
-        success: function (response) {
-        }
-      }
-      )
+        success: function (response) {}
+      })
     }
+    function meals(){ // 함수 파라미터로 날짜정보 전달 
+        $.ajax({
+          type: "GET",
+          url: "/meal",
+          data: {
+            'begin': '20210901', // 여기서 날짜 정보 사용
+            'end': '20210901', // 여기도 !
+            'region_code': 'B10',
+            'school_code': '7010057'
+          },
+          success: function(response) {
+            console.log(response)
+            let mealmenu = response['all_meals']
+            // response.result[날짜정보].MMEAL_SC_CODE, 
+  
+            for (let i = 0; i < mealmenu.length; i++) {
+              let school = mealmenu[i]['MMEAL_SC_CODE']
+              let meal1 = mealmenu[i]['DDISH_NM']
+              let mealname = mealmenu[i]['MMEAL_SC_NM']
+  
+              let temp_html = ` <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">${MMEAL_SC_NM}</th>
+              <td>
+                <li>${DDISH_NM}</li>
+                
+              </td>`
+  
+              $('#table table-bordered').append(temp_html)
+  
+              
+            }
+  
+            
+          }
+        })
+      }
   </script>
 </head>
 

@@ -21,6 +21,5 @@ api.add_namespace(Meal, "/meal")
 # please add your namespace here
 # `add_namespace(namespace, path)`
 
-
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
