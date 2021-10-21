@@ -75,15 +75,18 @@
     }
   </style>
   <script>
+    
     function locationList() {
       $.ajax({
         type: "GET",
-        url: "/school/location",
-        async: false,
+        url: "/location",
         data: {},
         success: function (response) {
-          let locations = response['all_locations']
-          console.log (locations)
+          let locations = response['location']
+          for(let i =0; i<locations.length; i++)
+          {
+
+          }
         }
       })
     }

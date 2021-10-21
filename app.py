@@ -22,18 +22,5 @@ api.add_namespace(Meal, "/meal")
 # `add_namespace(namespace, path)`
 
 
-@app.route("/uptime")
-def uptime():
-    return {"uptime": calc_uptime(wokeup)}
-
-
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
-
-@app.route("/location", method=['GET'])
-def locationList():
-    locations =list(db.Mealboard.find({},{'_id':False}))
-
-    return jsonify({'all_locations': locations})
-
-
