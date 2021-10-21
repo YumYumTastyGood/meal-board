@@ -27,5 +27,10 @@ def uptime():
     return {"uptime": calc_uptime(wokeup)}
 
 
+def meals():
+    meal1 = list(db.meal.find({}, {"_id": False}))
+    return jsonify({"all_meals": meal1})
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
