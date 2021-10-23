@@ -3,13 +3,24 @@
 
 <head>
   <meta charset="utf-8">
-  <title>랭킹페이지</title>
+  <title>mypage</title>
+  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/f3d5717210.js" crossorigin="anonymous"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
@@ -66,34 +77,142 @@
       cursor: pointer;
     }
 
-    .table-block {
-      margin-top: 1rem;
+    .review {
+      margin: 0 auto;
     }
 
-    .table {
-      margin-left: 2.5%;
-      width: 95%;
+    .file-upload label {
+      display: inline-block;
+      padding: .5em .75em;
+      color: #999;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #fdfdfd;
+      cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+    }
 
+    .file-upload input[type="file"] {
+      /* 파일 필드 숨기기 */
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .file-upload label {
+      display: inline-block;
+      padding: .5em .75em;
+      color: #999;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #fdfdfd;
+      cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+    }
+
+    /* named upload */
+    .file-upload .upload-name {
+      display: inline-block;
+      padding: .5em .75em;
+      /* label의 패딩값과 일치 */
+      font-size: inherit;
+      font-family: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #f5f5f5;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+      -webkit-appearance: none;
+      /* 네이티브 외형 감추기 */
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    /* imaged preview */
+    .file-upload .upload-display {
+      /* 이미지가 표시될 지역 */
+      margin-bottom: 5px;
+    }
+
+    @media(min-width: 768px) {
+      .file-upload .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+      }
+    }
+
+    .file-upload .upload-thumb-wrap {
+      /* 추가될 이미지를 감싸는 요소 */
+      display: inline-block;
+      width: 54px;
+      padding: 2px;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    .file-upload .upload-display img {
+      /* 추가될 이미지 */
+      display: block;
+      max-width: 100%;
+      width: 100% \9;
+      height: auto;
+    }
+
+    .feeling_div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-container {
+      margin-left: 20px;
+    }
+
+    .feeling_a {
+      background-color: #fff;
+      border: 1px solid #ffd000;
+      padding: 8px 5px;
+      border-radius: 3px;
+      color: #ffd000;
+    }
+    #ranking-box{
+      margin: 30px 40px;
+      width: 300px;
+      height: 800px;
+    }
+    .rank-body{
+      margin: 15px;
+      text-align: center;
+      font-size: 20px;
     }
   </style>
-  <script>
-    function makethief() {
-      $.ajax({
-        type: "GET",
-        url: "",
-        data: {},
-        success: function (response) {(
-          
-        )}
-    })
-    
-    }
 
-    function makepolice() {
-      const name = document.getElementById('post-police').value;
-      document.getElementById("result2").innerText = name;
-    }
-  </script>
 </head>
 
 <body>
@@ -113,51 +232,39 @@
             <a class="nav-link" href="ranking.html">랭킹 밥경찰</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="write.html">글작성</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="mypage.html">마이페이지</a>
           </li>
         </ul>
       </div>
     </nav>
-
-    <div class="rank">
-      <form>
-        <label for="post-thief">밥도둑:
-          <input style="width:60vw" name="submitted-name" type="text" id="post-thief" autocomplete="name">
-        </label>
-        <button type="submit" class="btn" onclick="makethief()">저장</button>
-      </form>
-
-      <!-- Form which will send a POST request to the current URL -->
-      <form method="post">
-        <label for="post-police">밥경찰:
-          <input style="width:60vw" name="submitted-name" type="text" id="post-police" autocomplete="name">
-        </label>
-        <button type="submit" class="btn" onclick="makepolice()">저장</button>
-      </form>
-
-      <div class="table-block">
-        <table class="table" border="1">
-          <thead>
-            <th>밥도둑</th>
-            <th>밥경찰</th>
-          </thead>
-          <tbody id="reviews">
-            <tr>
-              <td id="result1"></td>
-              <td id="result2"></td>
-            </tr>
-          </tbody>
-        </table>
+    <div id="ranking-box" class="img-columns">
+      <div class="bob-rank">
+        <img class="card-img-top"
+          src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+          alt="Card image cap">
+        <div class="rank-body">
+          <a target="_blank" href="#" class="rank-title">이름</a>
+          <div class="feeling_div">
+            <div class="button-container like-container">
+              <button class="feeling_a">
+                <i class="fa fa-heart-o"> Like</i>
+                </a>
+            </div>
+            <div class="button-container dislike-container">
+              <button class="feeling_a">
+                <i class="fa fa-heart"> Dislike</i>
+                </a>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-      </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-      </script>
-    <script src="https://kit.fontawesome.com/f3d5717210.js" crossorigin="anonymous"></script>
+  </div>
+
 </body>
 
 </html>
