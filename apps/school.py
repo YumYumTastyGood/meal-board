@@ -22,7 +22,10 @@ class SchoolList(Resource):
         school = paramdict.get("school", None)
         if not school:
             return {"message": "school is required"}, 400
-        result = mongo.db.school_info.find({"school_name": school}, {"_id": False})
+        # result = mongo.db.school_info.find({"school_name": school}, {"_id": False})
+        result = mongo.db.school_info.find(
+            {"school_name": {"$regex": f".*{school}.*"}}, {"_id": False}
+        )
         return {"school_list": list(result)}, 200
 
 
