@@ -111,18 +111,20 @@
     function meals(){ // 함수 파라미터로 날짜정보 전달 
         $.ajax({
           type: "GET",
-          url: "/meal",
+          url: "https://meal-board.herokuapp.com/meal",
           data: {
-            'begin': '20210901', // 여기서 날짜 정보 사용
-            'end': '20210901', // 여기도 !
+            'begin': 'currentTime', // 여기서 날짜 정보 사용
+            'end': 'currentTime', // 여기도 !
             'region_code': 'B10',
             'school_code': '7010057'
           },
           success: function(response) {
             console.log(response)
-            let mealmenu = response['all_meals']
+            let mealmenu = response.result['currentTime'].MMEAL_SC_CODE
             // response.result[날짜정보].MMEAL_SC_CODE, 
-  
+
+            var begin = document.getElementById("currentTime").value();
+            
             for (let i = 0; i < mealmenu.length; i++) {
               let school = mealmenu[i]['MMEAL_SC_CODE']
               let meal1 = mealmenu[i]['DDISH_NM']
@@ -130,10 +132,8 @@
   
               let temp_html = ` <thead>
             <tr>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col">${begin}</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -173,6 +173,8 @@
             <a class="nav-link" href="ranking.html">랭킹 밥경찰</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="write.html">글작성</a>
+          </li><li class="nav-item">
             <a class="nav-link" href="mypage.html">마이페이지</a>
           </li>
         </ul>
@@ -216,7 +218,7 @@
           <!-- </div> -->
         </div>
         <div class='col-md-3'>
-          <button type="button" class="btn btn-serch" style="width:100%; height:100%;">찾아보기</button>
+          <button type="button" class="btn btn-serch" style="width:100%; height:100%;" onclick="meals()">찾아보기</button>
         </div>
       </div>  
       <div class="table">

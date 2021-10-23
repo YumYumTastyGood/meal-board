@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 
   <style>
-      * {
+    * {
       font-family: 'Single Day', cursive;
     }
 
@@ -77,105 +77,140 @@
       cursor: pointer;
     }
 
-    .review{
+    .review {
       margin: 0 auto;
     }
+
     .file-upload label {
-    display: inline-block;
-    padding: .5em .75em;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: .25em;
-}
-.file-upload input[type="file"] {  /* 파일 필드 숨기기 */
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0;
-}
+      display: inline-block;
+      padding: .5em .75em;
+      color: #999;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #fdfdfd;
+      cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+    }
 
-.file-upload input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0;
-}
+    .file-upload input[type="file"] {
+      /* 파일 필드 숨기기 */
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
 
-.file-upload label {
-    display: inline-block;
-    padding: .5em .75em;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: .25em;
-}
+    .file-upload input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
 
-/* named upload */
-.file-upload .upload-name {
-    display: inline-block;
-    padding: .5em .75em;  /* label의 패딩값과 일치 */
-    font-size: inherit;
-    font-family: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #f5f5f5;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: .25em;
-    -webkit-appearance: none; /* 네이티브 외형 감추기 */
-    -moz-appearance: none;
-    appearance: none;
-}
-/* imaged preview */
-.file-upload .upload-display {  /* 이미지가 표시될 지역 */
-    margin-bottom: 5px;
-}
+    .file-upload label {
+      display: inline-block;
+      padding: .5em .75em;
+      color: #999;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #fdfdfd;
+      cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+    }
 
-@media(min-width: 768px) { 
+    /* named upload */
+    .file-upload .upload-name {
+      display: inline-block;
+      padding: .5em .75em;
+      /* label의 패딩값과 일치 */
+      font-size: inherit;
+      font-family: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #f5f5f5;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+      -webkit-appearance: none;
+      /* 네이티브 외형 감추기 */
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    /* imaged preview */
     .file-upload .upload-display {
+      /* 이미지가 표시될 지역 */
+      margin-bottom: 5px;
+    }
+
+    @media(min-width: 768px) {
+      .file-upload .upload-display {
         display: inline-block;
         margin-right: 5px;
         margin-bottom: 0;
+      }
     }
-}
 
-.file-upload .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
-    display: inline-block;
-    width: 54px;
-    padding: 2px;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-}
+    .file-upload .upload-thumb-wrap {
+      /* 추가될 이미지를 감싸는 요소 */
+      display: inline-block;
+      width: 54px;
+      padding: 2px;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
 
-.file-upload .upload-display img {  /* 추가될 이미지 */
-    display: block;
-    max-width: 100%;
-    width: 100% \9;
-    height: auto;
-}
-    
-    
+    .file-upload .upload-display img {
+      /* 추가될 이미지 */
+      display: block;
+      max-width: 100%;
+      width: 100% \9;
+      height: auto;
+    }
+
+    .feeling_div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-container {
+      margin-left: 20px;
+    }
+
+    .feeling_a {
+      background-color: #fff;
+      border: 1px solid #ffd000;
+      padding: 8px 5px;
+      border-radius: 3px;
+      color: #ffd000;
+    }
+    #ranking-box{
+      margin: 30px 40px;
+      width: 300px;
+      height: 800px;
+    }
+    .rank-body{
+      margin: 15px;
+      text-align: center;
+      font-size: 20px;
+    }
   </style>
 
 </head>
@@ -197,41 +232,38 @@
             <a class="nav-link" href="ranking.html">랭킹 밥경찰</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="write.html">글작성</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="mypage.html">마이페이지</a>
           </li>
         </ul>
       </div>
     </nav>
-
-    <div class="container" style="max-width: 600px;">
-      <div class="info" style="padding-top:1rem">
-        <h1>천하제일 급식대회</h1>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">제목</span>
+    <div id="ranking-box" class="img-columns">
+      <div class="bob-rank">
+        <img class="card-img-top"
+          src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+          alt="Card image cap">
+        <div class="rank-body">
+          <a target="_blank" href="#" class="rank-title">이름</a>
+          <div class="feeling_div">
+            <div class="button-container like-container">
+              <button class="feeling_a">
+                <i class="fa fa-heart-o"> Like</i>
+                </a>
+            </div>
+            <div class="button-container dislike-container">
+              <button class="feeling_a">
+                <i class="fa fa-heart"> Dislike</i>
+                </a>
+            </div>
           </div>
-          <input type="text" class="form-control" id="title">
-        </div>
-
-        <div class="file-upload preview-image">
-          <input type="text" class="upload-name" value="파일선택" disabled="disabled">
-          <label for="input-file">업로드</label> 
-          <input type="file" id="input-file" class="upload-hidden"> 
-      </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">글 작성</span>
-          </div>
-          <textarea class="form-control" id="bookReview" cols="50" rows="10" placeholder="500자까지 입력할 수 있습니다."></textarea>
-        </div>
-        <div class="review" style="text-align: center;">
-          <button onclick="makeReview()" type="button" class="btn btn-primary" style="background-color: #ffd000; min-width:6rem">저장하기</button>
         </div>
       </div>
 
-
-
+    </div>
+  </div>
 
 </body>
 
