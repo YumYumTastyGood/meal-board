@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 
   <style>
-       * {
+    * {
       font-family: 'Single Day', cursive;
     }
 
@@ -62,10 +62,10 @@
       cursor: pointer;
     }
 
-    .review{
+    .review {
       margin: 0 auto;
     }
-    
+
     .full-height {
       height: 100%;
     }
@@ -74,86 +74,6 @@
       list-style-type: none;
     }
   </style>
-  <script>
-    function locationList() {
-      $.ajax({
-        type: "GET",
-        url: "/location",
-        data: {},
-        success: function (response) {
-          let locations = response['location']
-          for(let i =0; i<locations.length; i++)
-          {
-          }
-        }
-      })
-    }
-
-    function makeMealChart() {
-      $.ajax({
-        type: "POST",
-        url: "......url",
-        data: {},
-        success: function (response) {
-          alert(response["msg"]);
-          window.location.reload();
-        }
-      })
-    }
-    function showMealChart() {
-      $.ajax({
-        type: "GET",
-        url: "....url",
-        data: {},
-        success: function (response) {}
-      })
-    }
-    function meals(){ // 함수 파라미터로 날짜정보 전달 
-        $.ajax({
-          type: "GET",
-          url: "https://meal-board.herokuapp.com/meal",
-          data: {
-            'begin': 'currentTime', // 여기서 날짜 정보 사용
-            'end': 'currentTime', // 여기도 !
-            'region_code': 'B10',
-            'school_code': '7010057'
-          },
-          success: function(response) {
-            console.log(response)
-            let mealmenu = response.result['currentTime'].MMEAL_SC_CODE
-            // response.result[날짜정보].MMEAL_SC_CODE, 
-
-            var begin = document.getElementById("currentTime").value();
-            
-            for (let i = 0; i < mealmenu.length; i++) {
-              let school = mealmenu[i]['MMEAL_SC_CODE']
-              let meal1 = mealmenu[i]['DDISH_NM']
-              let mealname = mealmenu[i]['MMEAL_SC_NM']
-  
-              let temp_html = ` <thead>
-            <tr>
-              <th scope="col">${begin}</th>
-            
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">${MMEAL_SC_NM}</th>
-              <td>
-                <li>${DDISH_NM}</li>
-                
-              </td>`
-  
-              $('#table table-bordered').append(temp_html)
-  
-              
-            }
-  
-            
-          }
-        })
-      }
-  </script>
 </head>
 
 <body>
@@ -174,7 +94,8 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="write.html">글작성</a>
-          </li><li class="nav-item">
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="mypage.html">마이페이지</a>
           </li>
         </ul>
@@ -187,16 +108,12 @@
       </p>
       <div class="row" style="padding-bottom: 1rem;">
         <div class="col-md-3">
-          <div class="input-group mb-3 full-height"> 
+          <div class="input-group mb-3 full-height">
             <div class="input-group-prepend">
               <span class="input-group-text background-color-yellow" id="inputGroup-sizing-default">지역</span>
             </div>
-            <!-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> -->
             <select class="custom-select full-height" id="inputGroupSelect01">
               <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
             </select>
           </div>
         </div>
@@ -205,82 +122,42 @@
             <div class="input-group-prepend">
               <label class="input-group-text background-color-yellow" for="inputGroupSelect01">학교</label>
             </div>
-            <!-- <div class="md-form mt-0"> -->
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="serchSchool">
-            <button type="button" class="btn btn-warning full-height">
-            <i class="fas fa-search text-grey" aria-hidden="true"></i></button>
-            <!-- </div> -->
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchSchool">
+            <div type="button" class="btn btn-warning full-height" onclick="searchSchool()" data-toggle="modal" data-target="#exampleModal">
+              <i class="fas fa-search text-grey" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
+
+        <!-- Modal Dialog -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">학교 목록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <!-- <span aria-hidden="true">&times;</span> -->
+                </button>
+              </div>
+              <div class="modal-body" id="school-list-modal">
+              </div>
+              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
+          </div>
+        </div>
+        <!-- Modal Dialog -->
+
         <div class='col-md-3'>
           <!-- <div class="input-time"> -->
-            <input class="calander full-height" type='date' id='currentTime' style="width:100%;" />
+          <input class="calander full-height" type='date' id='currentTime' style="width:100%;" />
           <!-- </div> -->
         </div>
         <div class='col-md-3'>
           <button type="button" class="btn btn-serch" style="width:100%; height:100%;" onclick="meals()">찾아보기</button>
         </div>
-      </div>  
+      </div>
       <div class="table">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">시간</th>
-              <th scope="col">어제</th>
-              <th scope="col">오늘</th>
-              <th scope="col">내일</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">점심</th>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">저녁</th>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-              <td>
-                <li>쌀밥</li>
-                <li>김치</li>
-                <li>돼지갈비</li>
-                <li>김</li>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">후식</th>
-              <td>콘프레이크</td>
-              <td>아이스크림</td>
-              <td>쥬스</td>
-            </tr>
-          </tbody>
+        <table>
         </table>
       </div>
     </div>
@@ -292,6 +169,102 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script>
+    function locationList() {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          type: 'GET',
+          url: "https://meal-board.herokuapp.com/school/location",
+          dataType: "json",
+          data: {},
+          success: (response) => {
+            return resolve(response.location)
+          },
+          error: (e) => {
+            reject(e)
+          }
+        })
+      })
+    }
+
+    function insertLocation(location) {
+      let selector = document.getElementById('inputGroupSelect01')
+      for (const [key, value] of Object.entries(location)) {
+        let option = document.createElement('option')
+        option.value = key
+        option.key = value
+        option.text = value
+        selector.add(option)
+      }
+    }
+
+    function searchSchool() {
+      const schoolName = document.getElementById('searchSchool').value
+      const selector = document.getElementById('inputGroupSelect01')
+      const regionCode = selector.options[selector.selectedIndex].value
+      $.ajax({
+        type: "GET",
+        url: "https://meal-board.herokuapp.com/school",
+        data: {
+          'location': regionCode,
+          'school': schoolName
+        },
+        success: function (response) {
+          const school_list = response.school_list
+          console.log(school_list)
+          const modal = document.getElementById('school-list-modal')
+          modal.innerHTML = ''
+          for (school_info of school_list) {
+            console.log(school_info)
+            let schoolDiv = document.createElement('div')
+            const schoolInfo = document.createTextNode(school_info.school_name)
+            schoolDiv.appendChild(schoolInfo)
+            modal.append(schoolDiv)
+          }
+        }
+      })
+    }
+
+    function showMealChart() {
+      $.ajax({
+        type: "GET",
+        url: "....url",
+        data: {},
+        success: function (response) {}
+      })
+    }
+
+    function meals() { // 함수 파라미터로 날짜정보 전달 
+      const selector = document.getElementById('inputGroupSelect01')
+      const regionCode = selector.options[selector.selectedIndex].value
+      const yyyymmdd = document.getElementById('currentTime').value.split('-').join('')
+
+      $.ajax({
+        type: "GET",
+        url: "/meal",
+        data: {
+          'begin': yyyymmdd,
+          'end': yyyymmdd,
+          'region_code': regionCode,
+          'school_code': '7010057'
+        },
+        success: function (response) {
+          console.log(response)
+
+        }
+      })
+    }
+  </script>
+  <script>
+    // var select = document.getElementById('language');
+    // var value = select.options[select.selectedIndex].value;
+    // console.log(value); // 
+
+    $(document).ready(async () => {
+      const location = await locationList()
+      insertLocation(location)
+    });
   </script>
 </body>
 
