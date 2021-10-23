@@ -123,6 +123,7 @@
               <label class="input-group-text background-color-yellow" for="inputGroupSelect01">학교</label>
             </div>
             <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchSchool">
+            <div value='' id="school-code-div"></div>
             <div type="button" class="btn btn-warning full-height" onclick="searchSchool()" data-toggle="modal" data-target="#exampleModal">
               <i class="fas fa-search text-grey" aria-hidden="true"></i>
             </div>
@@ -153,11 +154,18 @@
           <!-- </div> -->
         </div>
         <div class='col-md-3'>
-          <button type="button" class="btn btn-serch" style="width:100%; height:100%;" onclick="meals()">찾아보기</button>
+          <button
+            type="button"
+            class="btn btn-serch"
+            style="width:100%; height:100%;"
+            onclick="meals()"
+          >찾아보기</button>
         </div>
       </div>
       <div class="table">
         <table>
+          <tbody id="table-body">
+          </tbody>
         </table>
       </div>
     </div>
@@ -220,47 +228,74 @@
             let schoolDiv = document.createElement('div')
             const schoolInfo = document.createTextNode(school_info.school_name)
             schoolDiv.appendChild(schoolInfo)
+            schoolDiv.setAttribute('value', school_info.school_code)
+            schoolDiv.setAttribute('name', school_info.school_name)
+            schoolDiv.setAttribute('onclick', `setSchoolInfo(${school_info.school_code}, "${school_info.school_name}")`)
             modal.append(schoolDiv)
           }
         }
       })
     }
 
-    function showMealChart() {
-      $.ajax({
-        type: "GET",
-        url: "....url",
-        data: {},
-        success: function (response) {}
-      })
+    function setSchoolInfo(school_code, school_name) {
+      document.getElementById('school-code-div').value = school_code
+      document.getElementById('searchSchool').value = school_name
+      $('#exampleModal').modal('hide')
     }
 
     function meals() { // 함수 파라미터로 날짜정보 전달 
+      console.log(!checkButtonDisabled())
+      if (checkButtonDisabled()) {
+        alert('학교 및 날짜정보를 입력해주세요')
+        return
+      }
       const selector = document.getElementById('inputGroupSelect01')
       const regionCode = selector.options[selector.selectedIndex].value
       const yyyymmdd = document.getElementById('currentTime').value.split('-').join('')
-
+      const schoolCode = document.getElementById('school-code-div').value
       $.ajax({
         type: "GET",
-        url: "/meal",
+        url: "https://meal-board.herokuapp.com/meal",
         data: {
           'begin': yyyymmdd,
           'end': yyyymmdd,
           'region_code': regionCode,
-          'school_code': '7010057'
+          'school_code': schoolCode
         },
         success: function (response) {
-          console.log(response)
-
+          try{
+            const mealInfo = response.result[yyyymmdd].DDISH_NM
+            const mealTable = document.getElementById('table-body')
+            mealTable.innerHTML = ''
+            const tr = document.createElement('tr')
+            for (meal of mealInfo){
+              const td = document.createElement('td')
+              const mealName = document.createTextNode(meal)
+              td.appendChild(mealName)
+              tr.appendChild(td)
+            }
+            mealTable.appendChild(tr)
+          } catch(err) {
+            const mealTable = document.getElementById('table-body')
+            mealTable.innerHTML = ''
+            const tr = document.createElement('tr')
+            const td = document.createElement('td')
+            const mealName = document.createTextNode('메뉴정보를 불러올 수 없어요..')
+            td.appendChild(mealName)
+            tr.appendChild(td)
+            mealTable.appendChild(tr)
+          }
         }
       })
     }
+
+    function checkButtonDisabled() {
+      const check_school_code = document.getElementById('school-code-div').value !== undefined ? false : true
+      const check_date = document.getElementById('currentTime').value !== '' ? false : true
+      return check_school_code && check_date
+    }
   </script>
   <script>
-    // var select = document.getElementById('language');
-    // var value = select.options[select.selectedIndex].value;
-    // console.log(value); // 
-
     $(document).ready(async () => {
       const location = await locationList()
       insertLocation(location)
