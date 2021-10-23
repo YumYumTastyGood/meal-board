@@ -5,3 +5,4 @@ __pycache__/
 *$py.class
 config.*.json
 config.json
+mealboard-google-secret.json

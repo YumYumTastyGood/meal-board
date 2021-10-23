@@ -1,9 +1,8 @@
-from database import Mongo
+from . import mongo
 from flask import request, jsonify
 from flask_restx import Resource, Api, Namespace
 import json
 
-mongo = Mongo()
 School = Namespace("School")
 
 
