@@ -1,11 +1,9 @@
-from os import environ
+from flask import Flask
+from os import environ, urandom
 from datetime import timedelta
 from routes import api
-
-# from database import Mongo
-# from authlib.integrations.flask_client import OAuth
-
-# from flask import Flask, jsonify, render_template, request
+from database import Mongo
+from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
 app.secret_key = urandom(12)
@@ -27,3 +25,4 @@ google = oauth.register(
 )
 
 api.init_app(app, title="Wokeup API", version="1.0", description="Wokeup API")
+mongo = Mongo()

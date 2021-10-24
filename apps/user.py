@@ -13,8 +13,6 @@ from flask_restx import Resource, Namespace
 import pathlib
 from authlib.integrations.flask_client import OAuth
 from functools import wraps
-from app import oauth
-
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 

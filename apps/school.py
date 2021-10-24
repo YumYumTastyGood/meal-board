@@ -1,4 +1,3 @@
-from . import mongo
 from flask import request, jsonify
 from flask_restx import Resource, Namespace
 import json
