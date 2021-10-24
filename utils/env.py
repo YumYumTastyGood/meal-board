@@ -2,6 +2,7 @@ import json
 from bson import json_util
 import pipes
 from os import getenv, environ, path
+from urllib.parse import quote_plus
 
 
 def init_json_env(env) -> None:
@@ -20,3 +21,21 @@ def init_json_env(env) -> None:
 
 def parse_json(data):
     return json.loads(json_util.dumps(data), encoding="utf-8")
+
+
+def get_database_uri(db: dict) -> str:
+    """
+    get database uri
+    """
+    host = db.get("host")
+    port = int(db.get("port"))
+    collection = db.get("collection")
+    user = db.get("user")
+    password = quote_plus(str(db.get("password")))
+
+    uri = f"mongodb+srv://{user}:{password}@{host}:{port}?retryWrites=true&w=majority"
+    print("env.py >> ", uri)
+    return uri
+
+
+# mongodb+srv://mealboard:T7kflnxdY5OwnmgX@cluster0.xclq8.mongodb.net/myFirstDatabase:27017/mealboard?retryWrites=true&w=majority
