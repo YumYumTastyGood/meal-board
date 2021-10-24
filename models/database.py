@@ -21,3 +21,6 @@ class Mongo:
             int(port),
         )
         self.db = self.client.get_database(collection)
+
+
+mongo = Mongo()
