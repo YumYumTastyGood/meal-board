@@ -2,7 +2,7 @@ import re
 import settings
 import requests
 from flask import request
-from flask_restx import Resource, Api, Namespace
+from flask_restx import Resource, Namespace
 
 recompiler = re.compile("[^ \u3131-\u3163\uac00-\ud7a3]+")
 
