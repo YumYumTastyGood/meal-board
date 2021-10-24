@@ -54,3 +54,23 @@ class MealInfo(Resource):
         }
 
         return {"result": result}, 200
+
+
+@Meal.route("/police")
+class MealPolice(Resource):
+    """
+    밥경찰 리스트 저장 관리용
+    """
+
+    def get(self):
+        response = {}
+
+
+@Meal.route("/theif")
+class MealTheif(Resource):
+    """
+    밥도둑 정보 저장 관리용
+    """
+
+    def get(self):
+        response = {}

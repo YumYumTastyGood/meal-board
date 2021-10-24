@@ -76,23 +76,6 @@
 
     }
   </style>
-  <script>
-    function makethief() {
-      $.ajax({
-        type: "GET",
-        url: "",
-        data: {},
-        success: function (response) {(
-          console.log('')
-        )}
-      })
-    }
-
-    function makepolice() {
-      const name = document.getElementById('post-police').value;
-      document.getElementById("result2").innerText = name;
-    }
-  </script>
 </head>
 
 <body>
@@ -122,20 +105,20 @@
     </nav>
 
     <div class="rank">
-      <form>
+      <!-- <form> -->
         <label for="post-thief">밥도둑:
           <input style="width:60vw" name="submitted-name" type="text" id="post-thief" autocomplete="name">
         </label>
         <button type="submit" class="btn" onclick="makethief()">저장</button>
-      </form>
+      <!-- </form> -->
 
       <!-- Form which will send a POST request to the current URL -->
-      <form method="post">
+      <!-- <form method="post"> -->
         <label for="post-police">밥경찰:
           <input style="width:60vw" name="submitted-name" type="text" id="post-police" autocomplete="name">
         </label>
         <button type="submit" class="btn" onclick="makepolice()">저장</button>
-      </form>
+      <!-- </form> -->
 
       <div class="table-block">
         <table class="table" border="1">
@@ -152,14 +135,47 @@
         </table>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-      </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-      </script>
-    <script src="https://kit.fontawesome.com/f3d5717210.js" crossorigin="anonymous"></script>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script src="https://kit.fontawesome.com/f3d5717210.js" crossorigin="anonymous"></script>
+  <script>
+    function makethief() {
+      const theifListRaw = document.getElementById('post-thief').value.split(',')
+      let theifList = Array()
+      for (theif of theifListRaw){
+        theifList.push(theif.trim())
+      }
+      console.log(theifList)
+
+      $.ajax({
+        type: "GET",
+        url: "",
+        data: {},
+        success: function (response) {
+          (
+            // console.log('')
+            console.log('밥도둑 요청성공')
+          )
+        }
+      })
+    }
+
+    function makepolice() {
+      const policeListRaw = document.getElementById('post-police').value.split(',')
+      let policeList = Array()
+      for (police of policeListRaw){
+        policeList.push(theif.trim())
+      }
+      console.log(policeList)
+      console.log('밥경찰 요청성공')
+    }
+  </script>
 </body>
 
 </html>

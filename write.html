@@ -249,20 +249,26 @@
   <script>
     // my script
     function makeReview() {
-      var title = document.getElementById('title').value;
-      var file = document.getElementById('input-file').files[0];
-      var review = document.getElementById('meal-review').value;
-      var formData = new FormData();
+      const file = document.getElementById('input-file').files[0];
+      const title = document.getElementById('title').value;
+      const review = document.getElementById('meal-review').value;
+      // console.log(title, file, review)
+      console.log(file.name, file.size, file.type)
+      let formData = new FormData();
+      formData.append('file', file, file.name);
       formData.append('title', title);
       formData.append('review', review);
-      formData.append('file', file);
+      for( let pair of formData.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
+      }
+      
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:3000/review', true);
+      xhr.open('POST', 'http://localhost:5000/board/post', true);
       xhr.send(formData);
       xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
           alert('저장되었습니다.');
-          location.href = 'index.html';
+          // location.href = 'index.html';
         }
       }
     }
