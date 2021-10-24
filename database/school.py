@@ -1,4 +1,4 @@
-from models.database import mongo
+from database.driver import mongo
 
 
 def get_location() -> dict:

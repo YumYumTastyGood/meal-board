@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from flask_restx import Resource, Namespace
-from models.school import get_location, get_school
+from database.school import get_location, get_school
 import json
 
 School = Namespace("School")
