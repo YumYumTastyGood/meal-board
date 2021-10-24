@@ -6,7 +6,14 @@ def get_location() -> dict:
     return result
 
 
-def get_school(school: str) -> list:
-    print("school > ", school)
-    result = mongo.db.school_info.find({"school_name": school}, {"_id": False})
+def get_school(location: str, school: str) -> list:
+    result = mongo.db.school_info.find(
+        {
+            "$and": [
+                {"region_code": location},
+                {"school_name": {"$regex": f".*{school}.*"}},
+            ]
+        },
+        {"_id": False},
+    )
     return list(result)

@@ -20,7 +20,7 @@ class SchoolList(Resource):
         school = paramdict.get("school", None)
         if not school:
             return {"message": "school is required"}, 400
-        school_list = get_school(school)
+        school_list = get_school(location, school)
         return {"school_list": school_list}, 200
 
 
