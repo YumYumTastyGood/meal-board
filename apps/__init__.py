@@ -2,9 +2,11 @@ from flask import Flask
 from os import environ, urandom
 from datetime import timedelta
 from routes import api
+from flask_cors import CORS
 from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 app.secret_key = urandom(12)
 app.config["SESSION_COOKIE_NAME"] = "google-login-session"
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=5)
