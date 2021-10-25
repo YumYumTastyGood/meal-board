@@ -16,7 +16,8 @@
     }
 
     body {
-      background-color: whitesmoke;
+      background: linear-gradient(198deg, #ffd000,#ffffff, #01d3f3 70%);
+
     }
 
     .wrap {
@@ -61,7 +62,10 @@
       font-size: 20px;
       cursor: pointer;
     }
-
+    .table
+    {
+      margin: auto;
+    }
     .review {
       margin: 0 auto;
     }
@@ -164,6 +168,8 @@
       </div>
       <div class="table">
         <table>
+          <thead id="table-head">
+          </thead>
           <tbody id="table-body">
           </tbody>
         </table>
@@ -266,13 +272,22 @@
           try{
             const mealInfo = response.result[yyyymmdd].DDISH_NM
             const mealTable = document.getElementById('table-body')
+            const tableHead = document.getElementById('table-head')
             mealTable.innerHTML = ''
+            tableHead.innerHTML = '식단'
+            tableHead.style.fontSize="25px"
             const tr = document.createElement('tr')
             for (meal of mealInfo){
               const td = document.createElement('td')
               const mealName = document.createTextNode(meal)
               td.appendChild(mealName)
               tr.appendChild(td)
+              td.style.background="linear-gradient(221deg,rgb(255, 208, 0), rgb(245, 245, 245),rgb(245, 222, 100), rgb(0, 220, 255)"
+              td.style.fontSize = "1.2em"
+              td.style.width = "10%"
+              td.style.height = "140px"
+              td.style.textAlign ="center"
+              td.style.border ="solid #f5f5f5"
             }
             mealTable.appendChild(tr)
           } catch(err) {
@@ -288,7 +303,6 @@
         }
       })
     }
-
     function checkButtonDisabled() {
       const check_school_code = document.getElementById('school-code-div').value !== undefined ? false : true
       const check_date = document.getElementById('currentTime').value !== '' ? false : true
