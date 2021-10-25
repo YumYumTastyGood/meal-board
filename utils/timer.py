@@ -1,11 +1,13 @@
 from datetime import datetime
 
+
 def get_datetime() -> datetime:
     """
     Returns the current datetime object.
     :return: datetime object
     """
     return datetime.now()
+
 
 def calc_uptime(wokeup_time: datetime) -> str:
     """
