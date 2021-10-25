@@ -1,13 +1,14 @@
 import re
 import settings
 import requests
-from flask import request
-from __main__ import app
+from flask import request, Blueprint
 
 recompiler = re.compile("[^ \u3131-\u3163\uac00-\ud7a3]+")
 
+meal = Blueprint("meal", __name__, url_prefix="/meal")
 
-@app.route("/meal", methods=["GET"])
+
+@meal.route("/", methods=["GET"])
 def get_meal():
     paramdict = request.args.to_dict()
     # when = paramdict.get("when", "")

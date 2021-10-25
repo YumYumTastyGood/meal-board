@@ -1,9 +1,10 @@
 import json
-from flask import render_template
-from __main__ import app
+from flask import Blueprint, render_template
+
+home = Blueprint("home", __name__, url_prefix="/")
 
 
-@app.route("/", methods=["GET"])
+@home.route("/")
 def get_home():
     """
     메인 화면

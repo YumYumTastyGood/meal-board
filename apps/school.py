@@ -1,10 +1,11 @@
-from flask import request, jsonify
+from flask import Blueprint, request, jsonify
 from database.school import get_location, get_school
 import json
-from __main__ import app
+
+school = Blueprint("school", __name__, url_prefix="/school")
 
 
-@app.route("/school", methods=["GET"])
+@school.route("/", methods=["GET"])
 def get_school_info():
     """
     학교 정보를 제공하기 위한 API
@@ -20,7 +21,7 @@ def get_school_info():
     return {"school_list": school_list}, 200
 
 
-@app.route("/school/location", methods=["GET"])
+@school.route("/location", methods=["GET"])
 def get_location_info():
     """
     학교 위치 정보를 제공하기 위한 API

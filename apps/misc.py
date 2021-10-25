@@ -1,9 +1,11 @@
 import json
 from settings import WOKEUP_TIME
 from utils.timer import calc_uptime
-from __main__ import app
+from flask import Blueprint
+
+misc = Blueprint("misc", __name__, url_prefix="/misc")
 
 
-@app.route("/misc/uptime", methods=["GET"])
+@misc.route("/uptime", methods=["GET"])
 def get_uptime():
     return {"uptime": calc_uptime(WOKEUP_TIME)}, 200
