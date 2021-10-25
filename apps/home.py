@@ -1,23 +1,14 @@
 import json
-from flask import render_template, make_response
-from flask_restx import Resource, Namespace
-
-Home = Namespace("Home")
+from flask import render_template
+from __main__ import app
 
 
-@Home.route("")
-class Index(Resource):
+@app.route("/", methods=["GET"])
+def get_home():
     """
-    학교 위치 정보를 제공하기 위한 API
+    메인 화면
     """
-
-    def get(self):
-        headers = {"Content-Type": "text/html"}
-        return make_response(
-            render_template(
-                template_name_or_list="home.html",
-                hello="asdfqwer",
-            ),
-            200,
-            headers,
-        )
+    return render_template(
+        "home.html",
+        hello="asdfqwer",
+    )
