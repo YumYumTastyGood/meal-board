@@ -1,13 +1,15 @@
-from database.driver import mongo
+from apps import mongo
+
+mealboard = mongo.db.client.get_database("mealboard")
 
 
 def get_location() -> dict:
-    result = mongo.db.location.find_one({}, {"_id": False})
+    result = mealboard.location.find_one({}, {"_id": False})
     return result
 
 
 def get_school(location: str, school: str) -> list:
-    result = mongo.db.school_info.find(
+    result = mealboard.school_info.find(
         {
             "$and": [
                 {"region_code": location},
