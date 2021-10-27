@@ -2,6 +2,10 @@ from flask import jsonify
 
 
 class User:
+    """
+    mock user structure
+    """
+
     def signup(self):
 
         user = {
