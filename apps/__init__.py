@@ -2,11 +2,13 @@ from settings import *
 from os import urandom
 from datetime import timedelta
 from flask import Flask
+from flask_cors import CORS
 from utils.env import get_database_uri
 from . import home, meal, misc, school
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 app.secret_key = urandom(12)
 app.config["SESSION_COOKIE_NAME"] = "google-login-session"
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=5)
