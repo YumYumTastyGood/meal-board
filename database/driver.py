@@ -5,6 +5,13 @@ from datetime import datetime
 
 
 class Mongo:
+    """
+    deprecated
+    but... if flask-pymongo not working, try this:
+    from database.driver import Mongo
+    mongo = Mongo()
+    """
+
     def __init__(self, user=None, password=None, host=None, port=None, collection=None):
         host = host and host or DATABASES.get("host")
         port = port and port or int(DATABASES.get("port"))
