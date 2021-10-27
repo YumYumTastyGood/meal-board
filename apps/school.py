@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from database.school import get_location, get_school
 import json
 
 school = Blueprint("school", __name__, url_prefix="/school")
@@ -10,6 +9,8 @@ def get_school_info():
     """
     학교 정보를 제공하기 위한 API
     """
+    from database.school import get_school
+
     paramdict = request.args.to_dict()
     location = paramdict.get("location", "")
     if not location:
@@ -26,5 +27,7 @@ def get_location_info():
     """
     학교 위치 정보를 제공하기 위한 API
     """
+    from database.school import get_location
+
     get_location_list = get_location()
     return {"location": get_location_list}, 200

@@ -11,5 +11,5 @@ def get_home():
     """
     return render_template(
         "home.html",
-        hello="asdfqwer",
+        hello="Greeting",
     )

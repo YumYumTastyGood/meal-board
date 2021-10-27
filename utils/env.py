@@ -34,7 +34,6 @@ def get_database_uri(db: dict) -> str:
     password = quote_plus(str(db.get("password")))
 
     uri = f"mongodb+srv://{user}:{password}@{host}:{port}?retryWrites=true&w=majority"
-    print("env.py >> ", uri)
     return uri
 
 
