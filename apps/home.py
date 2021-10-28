@@ -37,15 +37,14 @@ def callback():
         return session.get("google_token")
 
     resp = google.authorized_response()
-    try:
-        if resp is None:
-            return "Access denied: reason=%s error=%s" % (
-                request.args["error"],
-                request.args["error_description"],
-            )
-        session["google_token"] = (resp["access_token"], "")
-        me = google.get("userinfo")
-    except Exception as e:
-        print(e)
-        print("error something")
+    foot_print = resp
+
+    if resp is None:
+        return "Access denied: reason=%s error=%s" % (
+            request.args["error"],
+            request.args["error_description"],
+        )
+    session["google_token"] = (resp["access_token"], "")
+    me = google.get("userinfo")
+
     return {"data": me.data}
