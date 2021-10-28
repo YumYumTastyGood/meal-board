@@ -37,7 +37,6 @@ def callback():
         return session.get("google_token")
 
     resp = google.authorized_response()
-    print(resp)
     try:
         if resp is None:
             return "Access denied: reason=%s error=%s" % (

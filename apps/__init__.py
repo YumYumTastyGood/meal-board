@@ -24,8 +24,6 @@ google = oauth.remote_app(
 
 app = Flask(__name__)
 app.secret_key = urandom(12)
-app.config["SESSION_COOKIE_NAME"] = "google-login-session"
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=5)
 app.config["MONGO_URI"] = get_database_uri(DATABASES)
 mongo = PyMongo(app)
 app.register_blueprint(home.home)
