@@ -47,4 +47,4 @@ def callback():
     session["google_token"] = (resp["access_token"], "")
     me = google.get("userinfo")
 
-    return {"data": me.data}
+    return render_template("login.html", data=me.data)
