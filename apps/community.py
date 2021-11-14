@@ -42,9 +42,10 @@ def community_next():
 
 @community.route("/write", methods=["GET"])
 def community_write_page():
-    user_auth = session.get("auth")
-    if user_auth is None:
+    if "auth" not in session:
+        session.pop("auth", None)
         return redirect(url_for("home.get_login"))
+    user_auth = session.get("auth")
     user = get_user_by_user_auth(user_auth)
     if user is None:
         return redirect(url_for("home.get_login"))
@@ -53,7 +54,10 @@ def community_write_page():
 
 @community.route("/write", methods=["POST"])
 def community_write():
-    user_auth = session.get("auth")
+    if "auth" not in session:
+        session.pop("auth", None)
+        return redirect(url_for("home.get_login"))
+    user_auth = session["auth"]
     user = get_user_by_user_auth(auth=user_auth)
     if user is None:
         return redirect(url_for("home.get_login"))

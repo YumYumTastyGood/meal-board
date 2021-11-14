@@ -18,7 +18,7 @@ def get_home():
 
 @home.route("/login")
 def get_login():
-    if session.get("auth"):
+    if "auth" not in session:
         return redirect(url_for("home.get_home"))
     return google.authorize(callback=url_for("home.callback", _external=True))
 
