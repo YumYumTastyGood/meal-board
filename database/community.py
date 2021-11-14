@@ -1,6 +1,7 @@
 from typing import Union, Tuple
 from database.interfaces.Community import Community
 from database.interfaces.User import User
+from datetime import datetime, timedelta
 
 
 def get_best_meal() -> list:
@@ -41,6 +42,7 @@ def write_new_meal(user: User, title: str, content: str, image_url=None) -> bool
             title=title,
             content=content,
             image_url=image_url,
+            date=datetime.now() + timedelta(hours=9),
         )
         return True
     except Exception as e:
