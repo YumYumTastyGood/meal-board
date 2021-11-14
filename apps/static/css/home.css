@@ -1,0 +1,22 @@
+.remove-margin-bottom{
+  margin-bottom: none!important;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.font-gain-weight{
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.full-width{
+  width: 100%;
+}
+
+input[type="date"]::before {content:attr(data-placeholder);width:100%;}
+input[type="date"]::-webkit-clear-button {display: none;}
+input[type="date"]::-webkit-inner-spin-button {display: none;}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {display:none}

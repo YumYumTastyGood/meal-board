@@ -27,14 +27,10 @@ def get_database_uri(db: dict) -> str:
     """
     get database uri
     """
-    host = db.get("host")
+    host = f"{db.get('host')}/{db.get('name')}"
     port = int(db.get("port"))
-    collection = db.get("collection")
     user = db.get("user")
     password = quote_plus(str(db.get("password")))
 
-    uri = f"mongodb+srv://{user}:{password}@{host}:{port}?retryWrites=true&w=majority"
+    uri = f"mongodb+srv://{user}:{password}@{host}?retryWrites=true&w=majority"
     return uri
-
-
-# mongodb+srv://mealboard:T7kflnxdY5OwnmgX@cluster0.xclq8.mongodb.net/myFirstDatabase:27017/mealboard?retryWrites=true&w=majority

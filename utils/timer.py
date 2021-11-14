@@ -18,3 +18,11 @@ def calc_uptime(wokeup_time: datetime) -> str:
     now = datetime.now()
     delta = now - wokeup_time
     return str(delta)
+
+
+def get_yyyymmdd_str() -> str:
+    """
+    Returns the current date in yyyymmdd format.
+    :return: str of the current date
+    """
+    return datetime.now().strftime("%Y%m%d")

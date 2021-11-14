@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/community.css') }}">
+<div class="container-fluid" id='community-feed'>
+  <div class="row" style='text-align: center;'>
+    <div class="col-md-3">
+      <div style='margin-top: 0.8rem;'>
+        <!-- Notice Begin -->
+        <div class="card">
+          <div class="card-header">
+            <h3>안녕하세요</h3>
+          </div>
+          <div class="card-body" style='font-size: 0.8rem'>
+            부적절한 내용 및 이미지를 포함한 게시물은<br />관리자에 의해 삭제될 수 있습니다.
+          </div>
+        </div>
+        <!-- Notice End -->
+        <div style='position:fixed; right:1rem; bottom:1rem; z-index:1'>
+          <button class='btn btn-primary' onclick="write_meal()">
+            글쓰기
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" id="meal-feed">
+      {% if meal_list | length > 0 %}
+        {% for meal in meal_list %}
+
+        <div class="card" style="width: 100%; margin-top: 0.8rem; margin-bottom: 0.8rem">
+          <div class="card-body">
+            <!--  Profile area -->
+            <div style="display:flex; align-items: center;">
+              <img class="card-img-top" src="{{meal.user.picture}}" alt="Card image cap"
+                style="width:40px; height:40px; border-radius: 50%;">
+              <div style="padding-left: 10px; display:flex; width: -webkit-fill-available;">{{meal.user.nickname}}</div>
+              <div style="display:flex; width:-webkit-fill-available; justify-content:flex-end;">
+                {{meal.date.strftime('%Y-%m-%d %H:%M:%S')}}
+              </div>
+            </div>
+            <!--  Profile area -->
+
+            <!-- Content area -->
+            <div style="display:flex; flex-direction:column; align-items:flex-start; padding-top:0.4rem;">
+              <h5 class="card-title">{{meal.title}}</h5>
+              <p class="card-text">{{meal.content}}</p>
+            </div>
+            {% if meal.image_url %}
+            <image src="{{ meal.image_url }}" style="width:100%; height:200px;"></image>
+            {% endif %}
+            <!-- <image src="/static/images/profile.png" style="width:100%; height:200px;"></image> -->
+            <!-- Content area -->
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="card" style="width: 100%; margin-top: 0.8rem; margin-bottom: 0.8rem; border:none; padding-top: 4rem;">
+          <div class="card-body">
+            <h5 class="card-title">아직 글이 없어요 T_T</h5>
+            가장 먼저 글을 작성해보세요!
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="col-md-3 d-none d-lg-block">
+      <div style='margin-top: 0.8rem;'>
+        <div class="card">
+          <div class="card-header">
+            <h3>광고주 모십니다</h3>
+          </div>
+          <div class="card-body" style='font-size: 0.8rem'>
+            이 페이지는 무료로 '해줘'.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/community.js') }}"></script>
+{% endblock %}

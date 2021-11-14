@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="margin-top: 2rem;">
+        급식메뉴를 조회할 수 있는 서비스를 만들어보았어요<br/>
+        그렇게 특별한 기능은 아니지만..<br/>
+        최근엔 커뮤니티 기능을 추가하고있어요<br/>      
+      </div>
+      <div style="margin-top: 1rem;">
+        프로젝트 코드가 궁금하신가요?
+        <i class="fab fa-github" onclick="go_to_repository()">YumYumTastyGood/new-meal-board</i>
+      </div>
+
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2rem;">
+    <div class="col-md-12">
+      <h2>만든 사람들</h2>
+    </div>
+  </div>
+  <div class="row" style='margin-top: 1rem;'>  
+    <div class="col-md-4" style='display:flex; flex-direction:column; justify-content:center;'>
+      <div style='text-align: center; margin-top: 1rem;'>
+        <img src="/static/images/magikarp.gif" style="width:120px; height:120px; border-radius: 50%">
+      </div>
+      <div style='text-align: center;'>
+        <h4>긴개똥이</h4>
+        '<b>해줘</b>'..!<br/>
+        이 디너쇼를 부수러왔다!
+      </div>
+    </div>
+    <div class="col-md-4" style='display:flex; flex-direction:column; justify-content:center;'>
+      <div style='text-align: center; margin-top: 1rem;'>
+        <img src="/static/images/angmond.png" style="width:120px; height:120px; border-radius: 50%">
+      </div>
+      <div style='text-align: center;'>
+        <h4>__Under__</h4>
+        '<b>어</b>'..?? 쉽지않네..?<br/>
+        어-질 어-질하네-!
+      </div>
+    </div>
+    <div class="col-md-4" style='display:flex; flex-direction:column; justify-content:center;'>
+      <div style='text-align: center; margin-top: 1rem;'>
+        <img src="/static/images/gorapaduck.gif" style="width:120px; height:120px; border-radius: 50%">
+      </div>
+      <div style='text-align: center;'>
+        <h4>은Joy</h4>
+        '<b>까까먹고싶은 고양이 소리질러</b>'..!! <br/>
+        <a href="https://www.youtube.com/channel/UC0vifx0FEyi7jMt3hNwbLtw">힌바리오바리</a> 구독 좋아요 알람설정까지!
+      </div>
+    </div>
+  </div>
+  <div class="row" style='margin-top: 2rem;'>
+    <div class="col-md-12">
+      <h3>도움주신분들</h3>
+    </div>
+  </div>
+  <div class="col-md-12" style='display:flex; flex-direction:column; justify-content:center; padding-bottom: 1rem;'>
+    <div style='text-align: center; margin-top: 1rem;'>
+      <img src="/static/images/honey_bee.png" style="width:80px; height:80px; border-radius: 50%; border:groove" >
+      <img src="/static/images/sun-man.png" style="width:80px; height:80px; border-radius: 50%; border:groove" >
+      <img src="/static/images/javachipfrat.jpg" style="width:80px; height:80px; border-radius: 50%; border:groove" >
+      <img src="/static/images/javapowder.png" style="width:80px; height:80px; border-radius: 50%; border:groove" >
+      <img src="/static/images/kaiji.jpeg" style="width:80px; height:80px; border-radius: 50%; border:groove" >
+    </div>
+  </div>
+
+</div>
+<script src ="{{ url_for('static', filename='js/about.js') }}"></script>
+{% endblock %}
