@@ -9,7 +9,6 @@ const write_new_meal = async () =>{
 
   xhr.onload = () => {
     if (xhr.status === 200) {
-      console.log(xhr.responseText)
       location.href = '/community'
     } else {
       alert('잠시 후 다시 시도해주세요')
