@@ -1,8 +1,7 @@
 import json
 from flask import Blueprint, render_template, url_for, session, request, redirect
 from database.user import set_user, get_user_by_user_id, get_user_by_user_auth
-
-# from apps.auth import google
+from apps.auth import google
 
 home = Blueprint("home", __name__, url_prefix="/")
 
@@ -13,8 +12,8 @@ def get_home():
     메인 화면
     """
     if "auth" not in session:
-        return render_template("home.html", auth=False, user=None)
-    return render_template("home.html", auth=False, user=None)
+        return render_template("home.html", auth=False)
+    return render_template("home.html", auth=True)
 
 
 @home.route("/login")
@@ -32,12 +31,12 @@ def get_logout():
 
 
 @home.route("/login/callback")
-async def callback():
+def callback():
     @google.tokengetter
-    async def get_google_oauth_token():
+    def get_google_oauth_token():
         return session.get("google_token")
 
-    resp = await google.authorized_response()
+    resp = google.authorized_response()
     if resp is None:
         return "Access denied: reason=%s error=%s" % (
             request.args["error"],
