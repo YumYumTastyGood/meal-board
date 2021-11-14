@@ -77,25 +77,31 @@ def new_meal():
     """
     마이페이지 식단 추가
     """
-    if "auth" in session:
-        user = get_user_by_user_auth(auth=session["auth"])
-        if not user:
-            session.pop("auth")
-            return json.dumps({"status": "fail"}), 403
-        body = MealValidator(meta={"csrf": False})
-        if body.validate():
-            data = {
-                "date": body.data.get("date", get_yyyymmdd_str()),
-                "region_code": body.data.get("region_code", ""),
-                "region_name": body.data.get("region_name", ""),
-                "school_code": body.data.get("school_code"),
-                "school_name": body.data.get("school_name"),
-                "meal_info": body.data.get("meal_info", "").split(","),
-            }
-            success = update_user_meal(user._id, data)
-            if success:
-                return json.dumps({"status": "success"}), 200
-    return json.dumps({"status": "fail"}), 403
+
+    if "auth" not in session:
+        return json.dumps({"status": "fail"}), 403
+
+    user = get_user_by_user_auth(auth=session["auth"])
+    if not user:
+        session.pop("auth")
+        return json.dumps({"status": "fail"}), 403
+
+    body = MealValidator(meta={"csrf": False})
+    success = False
+    if body.validate():
+        data = {
+            "date": body.data.get("date", get_yyyymmdd_str()),
+            "region_code": body.data.get("region_code", ""),
+            "region_name": body.data.get("region_name", ""),
+            "school_code": body.data.get("school_code"),
+            "school_name": body.data.get("school_name"),
+            "meal_info": body.data.get("meal_info", "").split(","),
+        }
+        success = update_user_meal(user._id, data)
+
+    if not success:
+        return json.dumps({"status": "fail"}), 403
+    return json.dumps({"status": "success"}), 200
 
 
 @mypage.route("/meal", methods=["GET"])
