@@ -7,7 +7,7 @@ const searchSchool = () => {
     url: "https://meal-board.herokuapp.com/school",
     data: {
       'location': regionCode,
-      'school': schoolName
+      'school_name': schoolName
     },
     success: function (response) {
       const school_list = response.school_list
