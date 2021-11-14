@@ -14,24 +14,25 @@ def get_mypage():
     마이페이지
     """
     user = None
-    if "auth" in session:
-        user = get_user_by_user_auth(auth=session["auth"])
-        if not user:
-            session.pop("auth")
-            return redirect(url_for("home.get_login"))
-        # TODO: Use WTF to validate userinfo for response
-        return render_template(
-            "mypage.html",
-            auth=True,
-            user={
-                "_id": user._id,
-                "email": user.email,
-                "picture": user.picture,
-                "nickname": user.nickname,
-                "message": user.message,
-            },
-        )
-    return redirect(url_for("home.get_login"))
+    if "auth" not in session:
+        session.pop("auth")
+        return redirect(url_for("home.get_login"))
+    user = get_user_by_user_auth(auth=session["auth"])
+    if not user:
+        session.pop("auth")
+        return redirect(url_for("home.get_login"))
+    # TODO: Use WTF to validate userinfo for response
+    return render_template(
+        "mypage.html",
+        auth=True,
+        user={
+            "_id": user._id,
+            "email": user.email,
+            "picture": user.picture,
+            "nickname": user.nickname,
+            "message": user.message,
+        },
+    )
 
 
 @mypage.route("/name", methods=["POST"])
@@ -39,17 +40,17 @@ def modify_mypage_name():
     """
     마이페이지 이름 수정
     """
-    if "auth" in session:
-        user = get_user_by_user_auth(auth=session["auth"])
-        if not user:
-            session.pop("auth")
-            return json.dumps({"status": "fail"}), 403
-        body = NicknameValidator(meta={"csrf": False})
-        if body.validate():
-            nickname = body.data["nickname"]
-            success = update_user_nickname(session.get("auth"), nickname)
-            if success:
-                return json.dumps({"status": "success"}), 200
+    if "auth" not in session:
+        return json.dumps({"status": "fail"}), 403
+    user = get_user_by_user_auth(auth=session["auth"])
+    if not user:
+        return json.dumps({"status": "fail"}), 403
+    body = NicknameValidator(meta={"csrf": False})
+    if body.validate():
+        nickname = body.data["nickname"]
+        success = update_user_nickname(session.get("auth"), nickname)
+        if success:
+            return json.dumps({"status": "success"}), 200
     return json.dumps({"status": "fail"}), 403
 
 
@@ -58,17 +59,19 @@ def modify_mypage_message():
     """
     마이페이지 이름 수정
     """
-    if "auth" in session:
-        user = get_user_by_user_auth(auth=session["auth"])
-        if not user:
-            session.pop("auth")
-            return json.dumps({"status": "fail"}), 403
-        body = MessageValidator(meta={"csrf": False})
-        if body.validate():
-            message = body.data["message"]
-            success = update_user_message(session.get("auth"), message)
-            if success:
-                return json.dumps({"status": "success"}), 200
+    if "auth" not in session:
+        session.pop("auth")
+        return json.dumps({"status": "fail"}), 403
+
+    user = get_user_by_user_auth(auth=session["auth"])
+    if not user:
+        return json.dumps({"status": "fail"}), 403
+    body = MessageValidator(meta={"csrf": False})
+    if body.validate():
+        message = body.data["message"]
+        success = update_user_message(session.get("auth"), message)
+        if success:
+            return json.dumps({"status": "success"}), 200
     return json.dumps({"status": "fail"}), 403
 
 
@@ -80,7 +83,6 @@ def new_meal():
 
     if "auth" not in session:
         return json.dumps({"status": "fail"}), 403
-
     user = get_user_by_user_auth(auth=session["auth"])
     if not user:
         session.pop("auth")
@@ -109,7 +111,7 @@ def new_my_meal():
     """
     마이페이지 식단 추가
     """
-    if "auth" in session:
-        data, status_code = get_user_meal(auth=session["auth"])
-        return data, status_code
-    return json.dumps({"message": "please login"}), 403
+    if "auth" not in session:
+        return json.dumps({"message": "please login"}), 403
+    data, status_code = get_user_meal(auth=session["auth"])
+    return data, status_code

@@ -28,12 +28,8 @@ def get_home():
     """
     메인 화면
     """
-    if "auth" in session:
-        user = get_user_by_user_auth(auth=session["auth"])
-        if not user:
-            session.pop("auth")
-            return redirect(url_for("home.get_home"))
-        return render_template("home.html", auth=True, user=user)
+    if "auth" not in session:
+        return render_template("home.html", auth=False, user=None)
     return render_template("home.html", auth=False, user=None)
 
 
