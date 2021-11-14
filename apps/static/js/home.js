@@ -40,7 +40,8 @@ const locationList = () => {
       dataType: "json",
       data: {},
       success: (response) => {
-        return resolve(response.location)
+        const data = response.location[0]
+        return resolve(data)
       },
       error: (e) => {
         reject(e)
@@ -76,7 +77,6 @@ const meals = () => { // 함수 파라미터로 날짜정보 전달
       'school_code': schoolCode
     },
     success: function (response) {
-      console.log(response.result[yyyymmdd])
       try{
         const mealInfo = response.result[yyyymmdd].DDISH_NM
         const mealCard = document.getElementById('meal-card')
@@ -120,7 +120,6 @@ const meals = () => { // 함수 파라미터로 날짜정보 전달
       }
     },
     error: (error) => {
-      console.log(error)
       const mealCard = document.getElementById('meal-card')
       mealCard.classList.add('font-gain-weight')
       mealCard.classList.add('text-align-center')
@@ -166,10 +165,9 @@ const saveMeal = () => {
   }
   $.ajax({
     type: "POST",
-    url: "http://localhost:8086/mypage/meal",
+    url: "https://meal-board.herokuapp.com/mypage/meal",
     data: meal,
     success: function (response) {
-      console.log(response)
       alert('저장되었습니다')
     },
     error: (error) => {
@@ -180,8 +178,8 @@ const saveMeal = () => {
 
 
 window.onload =  async () => {
-  const location = await locationList()
-  insertLocation(location)
+  const response = await locationList()
+  insertLocation(response)
 };
 
 
