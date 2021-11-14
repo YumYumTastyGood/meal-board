@@ -10,10 +10,8 @@ meal = Blueprint("meal", __name__, url_prefix="/meal")
 
 @meal.route("/", methods=["GET"])
 def get_meal():
+    # TODO: use validator
     paramdict = request.args.to_dict()
-    # when = paramdict.get("when", "")
-    # if not when:
-    # return {"message": "when is required"}, 400
     begin = paramdict.get("begin", None)
     if not begin:
         return {"message": "begin is required"}, 400
@@ -33,12 +31,14 @@ def get_meal():
         f"{settings.NEIS_API_URL}?Type=json&ATPT_OFCDC_SC_CODE={region_code}&SD_SCHUL_CODE={school_code}&MMEAL_SC_CODE=2&MLSV_FROM_YMD={begin}&MLSV_TO_YMD={end}"
     )
     data = response.json()
-    meal_info_list = data.get("mealServiceDietInfo")[1].get("row")
+    meal_info = data.get("mealServiceDietInfo")
+    if not meal_info:
+        return {"result": "success", "message": "no meal"}, 400
+    meal_info_list = meal_info[1].get("row")
     result = {
         meal_info.get("MLSV_FROM_YMD", ""): {
             "MMEAL_SC_CODE": meal_info.get("MMEAL_SC_CODE", ""),
             "MMEAL_SC_NM": meal_info.get("MMEAL_SC_NM", ""),
-            # "DDISH_NM": "".join(meal_info.get("DDISH_NM", "").split("<br/>")),
             "DDISH_NM": [
                 recompiler.sub("", x)
                 for x in meal_info.get("DDISH_NM", "").split("<br/>")

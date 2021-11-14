@@ -1,21 +1,15 @@
-from apps import mongo
-
-mealboard = mongo.db.client.get_database("mealboard")
-
-
-def get_location() -> dict:
-    result = mealboard.location.find_one({}, {"_id": False})
-    return result
+from typing import Union
+from database.interfaces.School import SchoolInfo, Location
+import re
 
 
-def get_school(location: str, school: str) -> list:
-    result = mealboard.school_info.find(
-        {
-            "$and": [
-                {"region_code": location},
-                {"school_name": {"$regex": f".*{school}.*"}},
-            ]
-        },
-        {"_id": False},
+def get_school_list(location: str, school: str) -> list:
+    schools = SchoolInfo.objects.filter(
+        region_code=location, school_name__icontains=school
     )
-    return list(result)
+    return schools
+
+
+def get_location_list() -> list:
+    locations = Location.objects()
+    return locations

@@ -1,4 +1,6 @@
 from flask import Blueprint, request, jsonify
+from apps.interfaces.school import SchoolValidator
+from database.school import get_school_list, get_location_list
 import json
 
 school = Blueprint("school", __name__, url_prefix="/school")
@@ -9,17 +11,14 @@ def get_school_info():
     """
     학교 정보를 제공하기 위한 API
     """
-    from database.school import get_school
 
-    paramdict = request.args.to_dict()
-    location = paramdict.get("location", "")
-    if not location:
-        return {"message": "location is required"}, 400
-    school = paramdict.get("school", None)
-    if not school:
-        return {"message": "school is required"}, 400
-    school_list = get_school(location, school)
-    return {"school_list": school_list}, 200
+    query = SchoolValidator(request.args, meta={"csrf": False})
+    if not query.validate():
+        return jsonify(query.errors), 400
+    location = query.data.get("location")
+    school_name = query.data.get("school_name")
+    data = get_school_list(location, school_name)
+    return {"school_list": data}, 200
 
 
 @school.route("/location", methods=["GET"])
@@ -27,7 +26,5 @@ def get_location_info():
     """
     학교 위치 정보를 제공하기 위한 API
     """
-    from database.school import get_location
-
-    get_location_list = get_location()
-    return {"location": get_location_list}, 200
+    locations = get_location_list()
+    return {"location": locations}, 200
