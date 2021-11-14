@@ -4,7 +4,7 @@ const searchSchool = () => {
   const regionCode = selector.options[selector.selectedIndex].value
   $.ajax({
     type: "GET",
-    url: "http://localhost:8086/school",
+    url: "https://meal-board.herokuapp.com/school",
     data: {
       'location': regionCode,
       'school_name': schoolName
