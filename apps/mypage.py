@@ -15,11 +15,10 @@ def get_mypage():
     """
     user = None
     if "auth" not in session:
-        session.pop("auth")
         return redirect(url_for("home.get_login"))
     user = get_user_by_user_auth(auth=session["auth"])
     if not user:
-        session.pop("auth")
+        session.pop("auth", None)
         return redirect(url_for("home.get_login"))
     # TODO: Use WTF to validate userinfo for response
     return render_template(
@@ -60,7 +59,7 @@ def modify_mypage_message():
     마이페이지 이름 수정
     """
     if "auth" not in session:
-        session.pop("auth")
+        session.pop("auth", None)
         return json.dumps({"status": "fail"}), 403
 
     user = get_user_by_user_auth(auth=session["auth"])
@@ -85,7 +84,7 @@ def new_meal():
         return json.dumps({"status": "fail"}), 403
     user = get_user_by_user_auth(auth=session["auth"])
     if not user:
-        session.pop("auth")
+        session.pop("auth", None)
         return json.dumps({"status": "fail"}), 403
 
     body = MealValidator(meta={"csrf": False})
