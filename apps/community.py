@@ -19,7 +19,13 @@ def community_home():
     """
     best_meal = get_best_meal()
     meal_list = get_meal_list()
-    return render_template("community.html", meal_list=meal_list, best_meal=best_meal)
+    if "auth" not in session:
+        return render_template(
+            "community.html", meal_list=meal_list, best_meal=best_meal, auth=False
+        )
+    return render_template(
+        "community.html", meal_list=meal_list, best_meal=best_meal, auth=True
+    )
 
 
 @community.route("/next", methods=["GET"])
@@ -37,13 +43,12 @@ def community_next():
 @community.route("/write", methods=["GET"])
 def community_write_page():
     user_auth = session.get("auth")
-    print(user_auth)
     if user_auth is None:
         return redirect(url_for("home.get_login"))
     user = get_user_by_user_auth(user_auth)
     if user is None:
         return redirect(url_for("home.get_login"))
-    return render_template("write.html")
+    return render_template("write.html", auth=True)
 
 
 @community.route("/write", methods=["POST"])
