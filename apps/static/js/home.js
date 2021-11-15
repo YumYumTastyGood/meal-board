@@ -53,6 +53,7 @@ const locationList = () => {
 const insertLocation = (location) => {
   let selector = document.getElementById('location-selector')
   for (const [key, value] of Object.entries(location)) {
+    if (key == '_id') continue
     let option = document.createElement('option')
     option.value = key
     option.key = value
