@@ -2,6 +2,7 @@ import re
 import settings
 import requests
 from flask import request, Blueprint
+from apps.interfaces.meal import NeisMealValidator
 
 recompiler = re.compile("[^ \u3131-\u3163\uac00-\ud7a3]+")
 
@@ -10,23 +11,15 @@ meal = Blueprint("meal", __name__, url_prefix="/meal")
 
 @meal.route("/", methods=["GET"])
 def get_meal():
-    # TODO: use validator
-    paramdict = request.args.to_dict()
-    begin = paramdict.get("begin", None)
-    if not begin:
-        return {"message": "begin is required"}, 400
-    end = paramdict.get("end", None)
-    if not end:
-        return {"message": "end is required"}, 400
+    query = NeisMealValidator(request.args, meta={"csrf": False})
+    if not query.validate():
+        return jsonify(query.errors), 400
+    begin = query.data["begin"]
+    end = query.data["end"]
     if int(begin) > int(end):
         return {"message": "begin must be less than end"}, 400
-    region_code = paramdict.get("region_code", None)
-    if not region_code:
-        return {"message": "region_code is required"}, 400
-    school_code = paramdict.get("school_code", None)
-    if not school_code:
-        return {"message": "school_code is required"}, 400
-
+    region_code = query.data["region_code"]
+    school_code = query.data["school_code"]
     response = requests.get(
         f"{settings.NEIS_API_URL}?Type=json&ATPT_OFCDC_SC_CODE={region_code}&SD_SCHUL_CODE={school_code}&MMEAL_SC_CODE=2&MLSV_FROM_YMD={begin}&MLSV_TO_YMD={end}"
     )
