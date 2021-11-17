@@ -1,7 +1,14 @@
 import json
-from flask import Blueprint, render_template, url_for, session, request, redirect
+from flask import (
+    Blueprint,
+    render_template,
+    url_for,
+    session,
+    request,
+    redirect,
+)
 from database.user import set_user, get_user_by_user_id, get_user_by_user_auth
-from apps.auth import google
+from utils.auth import google
 
 home = Blueprint("home", __name__, url_prefix="/")
 

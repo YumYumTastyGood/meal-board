@@ -1,5 +1,12 @@
 import json
-from flask import Blueprint, render_template, url_for, session, request, redirect
+from flask import (
+    Blueprint,
+    render_template,
+    url_for,
+    session,
+    request,
+    redirect,
+)
 from apps.interfaces.mypage import NicknameValidator, MessageValidator, MealValidator
 from database.user import *
 from database.meal import *
